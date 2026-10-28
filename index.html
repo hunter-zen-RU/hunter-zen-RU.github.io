@@ -1,7 +1,341 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Hunter Zen RU is a developer and digital builder focused on automation, Android utilities, OSINT tools, media workflows, and modern developer tooling."
+    />
+    <title>Hunter Zen RU | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
   <body>
-    <h1>Welcome to Hunter Zen RU!</h1>
-    <p>My GitHub Pages site is live.</p>
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
+    <div class="background-orb orb-three"></div>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="#home" class="brand" aria-label="Hunter Zen RU home">
+          <span class="brand-mark">HZ</span>
+          <span class="brand-text">Hunter Zen RU</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#tools">Tools</a>
+          <a href="#downloads">Downloads</a>
+          <a href="#social">Social</a>
+        </nav>
+
+        <a class="button button-sm button-primary" href="#downloads">Download Tools</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero section">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">Developer • Builder • Researcher</span>
+            <h1>Building automation, digital tools, and smarter systems.</h1>
+            <p>
+              I’m Hunter Zen RU — a developer focused on automation, Android customization,
+              research tooling, media workflows, and efficient CLI utilities built for real-world use.
+            </p>
+
+            <div class="cta-row">
+              <a class="button button-primary" href="#downloads">Download Files</a>
+              <a class="button button-secondary" href="#projects">View Projects</a>
+            </div>
+
+            <div class="hero-stats">
+              <div>
+                <strong>6+</strong>
+                <span>Core Focus Areas</span>
+              </div>
+              <div>
+                <strong>20+</strong>
+                <span>Project Concepts</span>
+              </div>
+              <div>
+                <strong>100%</strong>
+                <span>Hands-on Experimentation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-panel reveal">
+            <div class="glass-card profile-card">
+              <div class="status-pill">Available for software experiments & developer tools</div>
+
+              <div class="profile-header">
+                <div class="avatar">HZ</div>
+                <div>
+                  <h2>Hunter Zen RU</h2>
+                  <p>Automation • Android • OSINT • Dev Tools</p>
+                </div>
+              </div>
+
+              <div class="tech-badges">
+                <span>Python</span>
+                <span>JavaScript</span>
+                <span>Node.js</span>
+                <span>Linux</span>
+                <span>Bash</span>
+                <span>Android</span>
+              </div>
+
+              <div class="mini-panel">
+                <div>
+                  <span class="mini-label">Primary Focus</span>
+                  <strong>Automation & utility tooling</strong>
+                </div>
+                <div>
+                  <span class="mini-label">Work Style</span>
+                  <strong>Research-driven, practical, and efficient</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">About me</span>
+            <h2>Turning ideas into useful software systems.</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="glass-card panel reveal">
+              <p>
+                My work spans bot frameworks, Android-focused customization, automation scripts,
+                media tooling, OSINT workflows, and practical developer utilities. The goal is to
+                build systems that are flexible, efficient, and useful beyond the lab environment.
+              </p>
+              <p>
+                From messaging automation to CLI tooling and launcher experimentation, I focus on
+                exploring practical engineering patterns that bridge research, usability, and custom
+                workflows for users who want to push technology further.
+              </p>
+            </div>
+
+            <div class="focus-stack reveal">
+              <article class="focus-item">
+                <span class="focus-icon">01</span>
+                <div>
+                  <h3>Automation & Bots</h3>
+                  <p>WhatsApp, Telegram, Instagram, Facebook Messenger, and workflow automation systems.</p>
+                </div>
+              </article>
+
+              <article class="focus-item">
+                <span class="focus-icon">02</span>
+                <div>
+                  <h3>Android Tools</h3>
+                  <p>Terminal-centered launchers, app frameworks, and Android customization experiments.</p>
+                </div>
+              </article>
+
+              <article class="focus-item">
+                <span class="focus-icon">03</span>
+                <div>
+                  <h3>Media & Research</h3>
+                  <p>Open-source media access tools, downloader workflows, reverse engineering, and research utilities.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Project focus</span>
+            <h2>Exploring practical systems across multiple domains.</h2>
+          </div>
+
+          <div class="project-grid">
+            <article class="project-card reveal">
+              <div class="project-header">
+                <span class="project-tag">Automation</span>
+                <span class="project-dot"></span>
+              </div>
+              <h3>Bot Frameworks</h3>
+              <p>Messaging and social automation systems built around personalization, command-driven rules, and scalable workflows.</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-header">
+                <span class="project-tag">Android</span>
+                <span class="project-dot"></span>
+              </div>
+              <h3>Launcher Experiments</h3>
+              <p>Terminal-style interfaces, app launchers, and Android productivity workflows that prioritize speed and adaptability.</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-header">
+                <span class="project-tag">Media</span>
+                <span class="project-dot"></span>
+              </div>
+              <h3>Streaming & Download Tools</h3>
+              <p>Open-source media and download projects focused on flexible access, community-first usage, and streamlined interfaces.</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-header">
+                <span class="project-tag">Research</span>
+                <span class="project-dot"></span>
+              </div>
+              <h3>OSINT & Reverse Engineering</h3>
+              <p>Research-oriented tooling built for information gathering, digital analysis, and decompilation workflows.</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-header">
+                <span class="project-tag">Developer</span>
+                <span class="project-dot"></span>
+              </div>
+              <h3>CLI & Utility Projects</h3>
+              <p>Project setup tools, runtime wrappers, package management ideas, and shell automation for developers.</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-header">
+                <span class="project-tag">Systems</span>
+                <span class="project-dot"></span>
+              </div>
+              <h3>Workflow Engineering</h3>
+              <p>Cross-platform utility layers, installation flows, and automation patterns designed to reduce repetitive work.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="tools" class="section tools">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Toolset</span>
+            <h2>Tools and technologies I work with.</h2>
+          </div>
+
+          <div class="tools-grid">
+            <div class="tool-item reveal"><span>JavaScript</span></div>
+            <div class="tool-item reveal"><span>Node.js</span></div>
+            <div class="tool-item reveal"><span>Python</span></div>
+            <div class="tool-item reveal"><span>Bash</span></div>
+            <div class="tool-item reveal"><span>Shell</span></div>
+            <div class="tool-item reveal"><span>GitHub</span></div>
+            <div class="tool-item reveal"><span>Linux</span></div>
+            <div class="tool-item reveal"><span>Android</span></div>
+            <div class="tool-item reveal"><span>APIs</span></div>
+            <div class="tool-item reveal"><span>Automation</span></div>
+            <div class="tool-item reveal"><span>CLI Tools</span></div>
+            <div class="tool-item reveal"><span>OSINT</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="downloads" class="section downloads">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Downloads</span>
+            <h2>Useful files and project resources.</h2>
+          </div>
+
+          <div class="download-grid">
+            <article class="download-card reveal">
+              <div class="file-badge bash">.sh</div>
+              <h3>packser.sh</h3>
+              <p>Utility script for packaging, automation, and project workflow tasks.</p>
+              <a class="button button-primary" href="https://raw.githubusercontent.com/hunter-zen-RU/hunter-zen-RU.github.io/main/scripts/packser.sh" download>Download</a>
+            </article>
+
+            <article class="download-card reveal">
+              <div class="file-badge python">.sh</div>
+              <h3>pynx.sh</h3>
+              <p>Project runner and installer utility inspired by modern package workflow patterns.</p>
+              <a class="button button-primary" href="https://raw.githubusercontent.com/hunter-zen-RU/hunter-zen-RU.github.io/main/scripts/pynx.sh" download>Download</a>
+            </article>
+
+            <article class="download-card reveal">
+              <div class="file-badge windows">win</div>
+              <h3>windows/test</h3>
+              <p>Environment-specific test file included in the Windows utility folder.</p>
+              <a class="button button-primary" href="https://raw.githubusercontent.com/hunter-zen-RU/hunter-zen-RU.github.io/main/windows/test" download>Download</a>
+            </article>
+
+            <article class="download-card reveal">
+              <div class="file-badge readme">md</div>
+              <h3>README.md</h3>
+              <p>Portfolio overview and repository summary with project context and direction.</p>
+              <a class="button button-primary" href="https://raw.githubusercontent.com/hunter-zen-RU/hunter-zen-RU.github.io/main/README.md" download>Download</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="social" class="section social">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Connect</span>
+            <h2>Follow my work and get in touch.</h2>
+          </div>
+
+          <div class="social-grid">
+            <a class="social-card reveal" href="https://github.com/hunter-zen-RU" target="_blank" rel="noreferrer">
+              <span class="social-icon">GH</span>
+              <div>
+                <strong>GitHub</strong>
+                <small>@hunter-zen-RU</small>
+              </div>
+            </a>
+
+            <a class="social-card reveal" href="mailto:hello@hunterzen.dev">
+              <span class="social-icon">EM</span>
+              <div>
+                <strong>Email</strong>
+                <small>hello@hunterzen.dev</small>
+              </div>
+            </a>
+
+            <a class="social-card reveal" href="https://t.me/hunterzenru" target="_blank" rel="noreferrer">
+              <span class="social-icon">TG</span>
+              <div>
+                <strong>Telegram</strong>
+                <small>@hunterzenru</small>
+              </div>
+            </a>
+
+            <a class="social-card reveal" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+              <span class="social-icon">IN</span>
+              <div>
+                <strong>LinkedIn</strong>
+                <small>Professional profile</small>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© <span id="year"></span> Hunter Zen RU</p>
+        <a href="#home">Back to top</a>
+      </div>
+    </footer>
   </body>
 </html>
