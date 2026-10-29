@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Standalone installer for gist/github pages usage
+# Can be downloaded and run directly
+
+TEMP_DIR=$(mktemp -d)
+cd "$TEMP_DIR"
+
+echo "Downloading packser v1.1..."
+curl -fsSL https://raw.githubusercontent.com/yourusername/packser/main/packser -o packser
+curl -fsSL https://raw.githubusercontent.com/yourusername/packser/main/lib/detect.sh -o detect.sh
+curl -fsSL https://raw.githubusercontent.com/yourusername/packser/main/lib/pm.sh -o pm.sh
+curl -fsSL https://raw.githubusercontent.com/yourusername/packser/main/lib/ui.sh -o ui.sh
+curl -fsSL https://raw.githubusercontent.com/yourusername/packser/main/lib/search.sh -o search.sh
+curl -fsSL https://raw.githubusercontent.com/yourusername/packser/main/lib/utils.sh -o utils.sh
+
+mkdir -p lib
+mv detect.sh pm.sh ui.sh search.sh utils.sh lib/
+
+chmod +x packser
+./packser
+rm -rf "$TEMP_DIR"

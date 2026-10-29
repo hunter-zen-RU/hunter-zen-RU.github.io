@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# packser v1.1 - Package Installer Suite
+# Clean CLI interface for Linux package management
+
+set -euo pipefail
+
+VERSION="1.1"
+
+# Resolve symlinks so lib/ is found when packser is launched through
+# /usr/local/bin/packser instead of its real install location.
+SCRIPT_SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SCRIPT_SOURCE" ]; do
+    SCRIPT_LINK_DIR="$(cd -P "$(dirname "$SCRIPT_SOURCE")" && pwd)"
+    SCRIPT_SOURCE="$(readlink "$SCRIPT_SOURCE")"
+    case "$SCRIPT_SOURCE" in
+        /*) ;;
+        *) SCRIPT_SOURCE="${SCRIPT_LINK_DIR}/${SCRIPT_SOURCE}" ;;
+    esac
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SCRIPT_SOURCE")" && pwd)"
+
+CONFIG_DIR="${HOME}/.config/packser"
+CACHE_DIR="${HOME}/.cache/packser"
+DATA_DIR="${CONFIG_DIR}/data"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
+GRAY='\033[0;37m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
+
+# Initialize directories
+mkdir -p "$CONFIG_DIR" "$CACHE_DIR" "$DATA_DIR" "$SCRIPT_DIR/data" 2>/dev/null || true
+
+# Load modules
+source "${SCRIPT_DIR}/lib/utils.sh" 2>/dev/null || true
+source "${SCRIPT_DIR}/lib/detect.sh" 2>/dev/null || true
+source "${SCRIPT_DIR}/lib/pm.sh" 2>/dev/null || true
+source "${SCRIPT_DIR}/lib/database.sh" 2>/dev/null || true
+source "${SCRIPT_DIR}/lib/navigation.sh" 2>/dev/null || true
+source "${SCRIPT_DIR}/lib/search.sh" 2>/dev/null || true
+source "${SCRIPT_DIR}/lib/marking.sh" 2>/dev/null || true
+source "${SCRIPT_DIR}/lib/ui.sh" 2>/dev/null || true
+
+# Main function
+main() {
+    clear
+    print_header
+    detect_system
+    check_managers
+    show_dashboard
+}
+
+print_header() {
+    echo -e "${CYAN}${BOLD}"
+    echo "╔══════════════════════════════════════════════════════════╗"
+    echo "║                    PACKSER v${VERSION}                      ║"
+    echo "║              Package Installer Suite for Linux           ║"
+    echo "╚══════════════════════════════════════════════════════════╝"
+    echo -e "${NC}"
+}
+
+# Run main
+main "$@"
