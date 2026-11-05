@@ -282,3 +282,8 @@ if [ -n "$TARGET_REPO" ]; then
     if [ -z "$GPH_KEY" ]; then
         prompt_for_key
     fi
+launch_custom_shell
+else
+# Fallback to menu driven execution workspace
+launch_menu_interface
+fi
