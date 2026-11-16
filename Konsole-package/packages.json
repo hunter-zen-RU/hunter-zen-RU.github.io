@@ -1,0 +1,27 @@
+{
+  "packages": [
+    {
+      "name": "test",
+      "version": "1.0",
+      "description": "My custom system cleanup and backup script",
+      "type": "sh",
+      "url": "https://hunterzen-ru.github.io/scripts/konsole-os-test.sh"
+    },
+    {
+      "name": "sys",
+      "version": "0.0",
+      "description": "Comprehensive system health and network monitor using TUI variables.",
+      "type": "tui",
+      "target": "kos",
+      "url": "https://hunterzen-ru.github.io/TUI/packages/test.tui"
+    },
+    {
+      "name": "tui-app",
+      "version": "6.15.1",
+      "type": "apk",
+      "description": "T-UI Console Launcher Official Release",
+      "url": "https://github.com/hunter-zen-RU/TUI/releases/latest/download/tui.apk",
+      "targetName": "tui-update.apk"
+    }
+  ]
+}
