@@ -17,6 +17,8 @@ The build writes a deployment copy to `dist/` and refreshes the source-compatibl
 
 Edit `data/portfolio.json` to update profile details, HunruTech services, skills, achievements, announcements, available projects, and upcoming concepts. Project artwork is generated from each project's `accent`, `background`, and `monogram` values during the build.
 
+The browser lab includes JSON formatting, UTF-8 Base64, URL encoding, UUID v4 generation, Unix timestamp conversion, and SHA-256 hashing. A project brief helper copies a draft to the clipboard; it does not submit or store the form contents.
+
 Each build fetches the public GitHub profile and repositories to create a fresh, privacy-filtered `api/v1/github.json` snapshot. If the public API is unavailable or rate-limited, the build reports that it is using the last checked-in `data/github-cache.json` instead. GitHub Actions uses its read-only workflow token to avoid anonymous rate limits.
 
 ## Static JSON API

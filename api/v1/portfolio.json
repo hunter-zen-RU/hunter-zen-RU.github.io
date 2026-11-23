@@ -56,6 +56,11 @@
     {
       "name": "Packser",
       "category": "Linux · Package management",
+      "group": "Linux",
+      "stack": [
+        "Bash",
+        "Linux"
+      ],
       "description": "A Linux package installer suite with system detection, package-manager support, package search, and a menu-driven workflow.",
       "status": "Available",
       "url": "https://github.com/hunter-zen-RU/hunter-zen-RU.github.io/tree/main/scripts/packser",
@@ -73,6 +78,11 @@
     {
       "name": "Pynx",
       "category": "CLI · Project runner",
+      "group": "CLI & shell",
+      "stack": [
+        "Bash",
+        "Python"
+      ],
       "description": "A Python package installer and project-runner experiment focused on quick setup and straightforward workflows.",
       "status": "Available",
       "url": "https://github.com/hunter-zen-RU/hunter-zen-RU.github.io/blob/main/scripts/pynx.sh",
@@ -89,6 +99,10 @@
     {
       "name": "RepoDir",
       "category": "Shell · Developer utility",
+      "group": "CLI & shell",
+      "stack": [
+        "Shell"
+      ],
       "description": "A small repository helper script from the open-source toolbox, built for practical developer workflows.",
       "status": "Available",
       "url": "https://github.com/hunter-zen-RU/hunter-zen-RU.github.io/blob/main/scripts/repodir.sh",
@@ -105,6 +119,11 @@
     {
       "name": "Konsole collections",
       "category": "Linux · Configurations",
+      "group": "Linux",
+      "stack": [
+        "JSON",
+        "Linux"
+      ],
       "description": "Package and plugin collections for experimenting with a more personal, extensible terminal setup.",
       "status": "Available",
       "url": "https://github.com/hunter-zen-RU/hunter-zen-RU.github.io/tree/main/Konsole-plugins",
@@ -123,6 +142,7 @@
     {
       "name": "HunruTech web studio",
       "category": "Concept · Websites",
+      "group": "Concepts",
       "description": "A focused set of reusable building blocks for bringing small business websites from idea to launch.",
       "status": "In the sketchbook",
       "url": "https://github.com/hunrutech",
@@ -139,6 +159,7 @@
     {
       "name": "Developer API starter",
       "category": "Concept · Developer tools",
+      "group": "Concepts",
       "description": "A lightweight starting point for exploring useful API patterns and developer-friendly documentation.",
       "status": "In the sketchbook",
       "url": "https://github.com/hunrutech",
@@ -155,6 +176,7 @@
     {
       "name": "Indie game experiments",
       "category": "Concept · Interactive",
+      "group": "Concepts",
       "description": "Small interactive ideas exploring playful mechanics, visual worlds, and the craft of game-making.",
       "status": "In the sketchbook",
       "url": "https://github.com/hunrutech",

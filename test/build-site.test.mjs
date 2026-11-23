@@ -52,6 +52,7 @@ test("build publishes the portfolio page, versioned API, and artwork", async () 
     assert.match(artwork, new RegExp(project.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
     const detailPage = await readFile(join(output, project.page, "index.html"), "utf8");
     assert.match(detailPage, new RegExp(project.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    if (project.stack?.length) assert.match(detailPage, /class="detail-stack"/);
   }
   await access(join(output, ".nojekyll"));
   await access(join(output, "scripts/packser/install.sh"));

@@ -44,6 +44,7 @@
           <a href="#studio">Studio</a>
           <a href="#about">About</a>
           <a href="#lab">Developer lab</a>
+          <a href="#contact">Contact</a>
         </nav>
         <a class="nav-cta" href="https://github.com/hunrutech" target="_blank" rel="noreferrer">
           Let’s talk <span aria-hidden="true">↗</span>
@@ -119,6 +120,7 @@
               <input id="project-search" type="search" placeholder="Find a project" autocomplete="off" />
             </label>
           </div>
+          <div class="project-filters" id="project-filters" role="group" aria-label="Filter projects by type"></div>
           <div class="project-grid" id="project-grid" aria-live="polite">
             <p class="loading-note">Loading the project shelf…</p>
           </div>
@@ -131,12 +133,13 @@
                 <div><strong id="github-star-count">—</strong><span>STARS ON ORIGINAL REPOS</span></div>
               </div>
             </div>
+            <p class="github-snapshot-date" id="github-snapshot-date"></p>
             <div class="repo-list" id="repo-list" aria-live="polite"><p class="loading-note">Loading recent repositories…</p></div>
             <div class="github-profile-links">
               <p id="github-bio">Software engineer, website developer, and graphics designer.</p>
               <div>
                 <a href="https://github.com/hunter-zen-RU" target="_blank" rel="noreferrer">Contact via GitHub ↗</a>
-                <a id="github-blog-link" href="#" target="_blank" rel="noreferrer" hidden>Personal site ↗</a>
+                <a id="github-blog-link" target="_blank" rel="noreferrer" hidden>Personal site ↗</a>
               </div>
             </div>
           </section>
@@ -218,6 +221,37 @@
               </div>
               <p class="tool-feedback" id="url-feedback" aria-live="polite"></p>
             </article>
+            <article class="lab-card">
+              <div class="lab-card-heading"><span class="lab-number">04</span><h3>UUID generator</h3></div>
+              <label class="sr-only" for="uuid-output">Generated UUID</label>
+              <textarea id="uuid-output" spellcheck="false" readonly placeholder="Generate a UUID v4…"></textarea>
+              <div class="lab-controls">
+                <button class="button button-dark button-small" type="button" id="generate-uuid">Generate UUID</button>
+                <button class="button button-outline button-small" type="button" id="copy-uuid" disabled>Copy</button>
+              </div>
+              <p class="tool-feedback" id="uuid-feedback" aria-live="polite"></p>
+            </article>
+            <article class="lab-card">
+              <div class="lab-card-heading"><span class="lab-number">05</span><h3>Timestamp converter</h3></div>
+              <label class="sr-only" for="timestamp-input">Unix timestamp or date</label>
+              <textarea id="timestamp-input" spellcheck="false" placeholder="Unix seconds, milliseconds, or ISO date…"></textarea>
+              <div class="lab-controls">
+                <button class="button button-dark button-small" type="button" id="convert-timestamp">Convert</button>
+                <button class="subtle-button" type="button" data-clear="timestamp-input">Clear</button>
+              </div>
+              <p class="tool-feedback" id="timestamp-feedback" aria-live="polite"></p>
+              <pre class="utility-output" id="timestamp-output" hidden></pre>
+            </article>
+            <article class="lab-card">
+              <div class="lab-card-heading"><span class="lab-number">06</span><h3>SHA-256 hash</h3></div>
+              <label class="sr-only" for="hash-input">Text to hash</label>
+              <textarea id="hash-input" spellcheck="false" placeholder="Enter text to hash locally…"></textarea>
+              <div class="lab-controls">
+                <button class="button button-dark button-small" type="button" id="hash-text">Generate hash</button>
+                <button class="subtle-button" type="button" data-clear="hash-input">Clear</button>
+              </div>
+              <p class="tool-feedback" id="hash-feedback" aria-live="polite"></p>
+            </article>
           </div>
           <div class="api-panel">
             <div><p class="eyebrow">A tiny static API</p><h3>Portfolio data, ready to fetch.</h3><p>Versioned JSON endpoints served directly from GitHub Pages—no server required.</p></div>
@@ -231,23 +265,48 @@
                   <option value="api/v1/github.json">Live GitHub snapshot</option>
                 </select>
                 <button type="button" class="button button-light button-small" id="fetch-api">Fetch JSON</button>
+                <button type="button" class="button button-outline button-small" id="copy-api-url">Copy URL</button>
               </div>
               <pre class="api-output" id="api-output" tabindex="0" aria-live="polite">Choose an endpoint and fetch its JSON response.</pre>
+              <div class="api-output-actions">
+                <button type="button" class="subtle-button" id="copy-api-response" disabled>Copy JSON</button>
+                <p class="tool-feedback" id="api-feedback" aria-live="polite"></p>
+              </div>
               <a class="api-link" href="api/v1/portfolio.json">Open the portfolio API directly ↗</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="closing-section section-shell">
-        <div class="container closing-inner">
-          <p class="eyebrow">Have a good one in mind?</p>
-          <h2>Let’s make<br /><span>something useful.</span></h2>
-          <div class="contact-actions">
-            <a class="button button-light" href="https://github.com/hunter-zen-RU" target="_blank" rel="noreferrer">Contact via GitHub <span aria-hidden="true">↗</span></a>
-            <a class="contact-studio-link" href="https://github.com/hunrutech" target="_blank" rel="noreferrer">Explore HunruTech ↗</a>
+      <section class="closing-section section-shell" id="contact">
+        <div class="container closing-inner closing-grid">
+          <div class="closing-copy">
+            <p class="eyebrow">Have a good one in mind?</p>
+            <h2>Let’s make<br /><span>something useful.</span></h2>
+            <div class="contact-actions">
+              <a class="button button-light" href="https://github.com/hunter-zen-RU" target="_blank" rel="noreferrer">Contact via GitHub <span aria-hidden="true">↗</span></a>
+              <a class="contact-studio-link" href="https://github.com/hunrutech" target="_blank" rel="noreferrer">Explore HunruTech ↗</a>
+            </div>
+            <p class="closing-note">Open source · independent work · new ideas welcome</p>
           </div>
-          <p class="closing-note">Open source · independent work · new ideas welcome</p>
+          <form class="inquiry-card" id="inquiry-form">
+            <p class="inquiry-card-title">Start a project brief</p>
+            <label for="inquiry-service">What do you need?</label>
+            <select id="inquiry-service">
+              <option value="">Choose a service</option>
+              <option>Software or developer tool</option>
+              <option>Website or web app</option>
+              <option>Script or automation</option>
+              <option>Game or interactive project</option>
+              <option>Graphic design</option>
+              <option>Something else</option>
+            </select>
+            <label for="inquiry-notes">A few details</label>
+            <textarea id="inquiry-notes" rows="4" placeholder="What are you hoping to build?"></textarea>
+            <button type="button" class="button button-dark button-small" id="copy-inquiry">Copy project brief</button>
+            <p class="inquiry-privacy">Nothing is sent or stored. Copy the draft and paste it into your GitHub message when ready.</p>
+            <p class="tool-feedback" id="inquiry-feedback" aria-live="polite"></p>
+          </form>
         </div>
       </section>
     </main>

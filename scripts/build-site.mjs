@@ -37,6 +37,7 @@ const xmlEscape = (value) => String(value)
 
 function renderProjectPage(project) {
   const bullets = project.details.map((detail) => `<li>${xmlEscape(detail)}</li>`).join("\n");
+  const stack = (project.stack || []).map((technology) => `<span>${xmlEscape(technology)}</span>`).join("\n");
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -58,7 +59,8 @@ function renderProjectPage(project) {
       <a class="detail-back" href="../../index.html#work">← All projects</a>
       <p class="eyebrow">${xmlEscape(project.category)} · ${xmlEscape(project.status)}</p>
       <h1>${xmlEscape(project.name)}</h1>
-      <p class="detail-description">${xmlEscape(project.description)}</p>
+      <p class="detail-description">${xmlEscape(project.description)}</p>${stack ? `
+      <div class="detail-stack"><strong>Built with</strong>${stack}</div>` : ""}
       <img class="detail-artwork" src="../../${xmlEscape(project.image)}" alt="${xmlEscape(project.name)} project artwork" width="920" height="510" />
       <section class="detail-notes">
         <h2>${project.status === "Available" ? "About this project" : "Current direction"}</h2>

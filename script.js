@@ -65,38 +65,90 @@ document.addEventListener("DOMContentLoaded", () => {
       link.target = "_blank";
       link.rel = "noreferrer";
     }
-    body.append(top, title, description, link);
+    body.append(top, title, description);
+    if (project.stack?.length) {
+      const stack = element("div", "project-stack");
+      project.stack.forEach((technology) => stack.append(element("span", "", technology)));
+      body.append(stack);
+    }
+    body.append(link);
     card.append(imageLink, body);
-    card.dataset.search = `${project.name} ${project.category} ${project.description}`.toLowerCase();
+    card.dataset.group = project.group || "Other";
+    card.dataset.search = `${project.name} ${project.category} ${project.description} ${(project.stack || []).join(" ")}`.toLowerCase();
     return card;
   };
 
   const renderPortfolio = async () => {
-    const [toolsResponse, portfolioResponse, githubResponse] = await Promise.all([
-      fetch("api/v1/tools.json"),
-      fetch("api/v1/portfolio.json"),
-      fetch("api/v1/github.json")
+    const loadEndpoint = async (path) => {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`${path} returned HTTP ${response.status}.`);
+      return response.json();
+    };
+    const [toolsResult, portfolioResult] = await Promise.allSettled([
+      loadEndpoint("api/v1/tools.json"),
+      loadEndpoint("api/v1/portfolio.json")
     ]);
-    if (!toolsResponse.ok || !portfolioResponse.ok || !githubResponse.ok) {
-      throw new Error("The portfolio data endpoint could not be loaded.");
-    }
-    const tools = await toolsResponse.json();
-    const portfolio = await portfolioResponse.json();
-    const github = await githubResponse.json();
+    const tools = toolsResult.status === "fulfilled" ? toolsResult.value : null;
+    const portfolio = portfolioResult.status === "fulfilled" ? portfolioResult.value : null;
 
     const projectGrid = document.getElementById("project-grid");
     const upcomingGrid = document.getElementById("upcoming-grid");
-    if (projectGrid) {
+    if (projectGrid && tools) {
       projectGrid.replaceChildren(...tools.tools.map((project) => renderProject(project)));
-      const count = document.getElementById("project-count");
-      if (count) count.textContent = String(tools.tools.length).padStart(2, "0");
+    } else if (projectGrid) {
+      const reason = toolsResult.status === "rejected" ? toolsResult.reason.message : "The tools response was invalid.";
+      projectGrid.replaceChildren(element("p", "loading-note", `Could not load tools: ${reason}`));
     }
-    if (upcomingGrid) {
+    if (upcomingGrid && tools) {
       upcomingGrid.replaceChildren(...tools.upcoming.map((project) => renderProject(project, true)));
     }
 
+    const search = document.getElementById("project-search");
+    const filterContainer = document.getElementById("project-filters");
+    if (projectGrid && filterContainer && tools) {
+      let selectedGroup = "all";
+      const groups = [...new Set(tools.tools.map((project) => project.group || "Other"))].sort();
+      const filters = ["all", ...groups].map((group) => {
+        const button = element("button", "filter-chip", group === "all" ? "All projects" : group);
+        button.type = "button";
+        button.classList.toggle("is-active", group === "all");
+        button.setAttribute("aria-pressed", String(group === "all"));
+        button.addEventListener("click", () => {
+          selectedGroup = group;
+          filters.forEach((filter) => {
+            const active = filter.dataset.group === selectedGroup;
+            filter.classList.toggle("is-active", active);
+            filter.setAttribute("aria-pressed", String(active));
+          });
+          updateProjectFilters();
+        });
+        button.dataset.group = group;
+        return button;
+      });
+      filterContainer.replaceChildren(...filters);
+
+      const updateProjectFilters = () => {
+        const query = search?.value.trim().toLowerCase() || "";
+        let visibleCount = 0;
+        projectGrid.querySelectorAll(".project-card").forEach((card) => {
+          const matchesGroup = selectedGroup === "all" || card.dataset.group === selectedGroup;
+          const matchesQuery = card.dataset.search.includes(query);
+          const visible = matchesGroup && matchesQuery;
+          card.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        const count = document.getElementById("project-count");
+        if (count) count.textContent = String(visibleCount).padStart(2, "0");
+        const emptyState = document.getElementById("empty-projects");
+        if (emptyState) emptyState.hidden = visibleCount > 0;
+      };
+
+      search?.addEventListener("input", updateProjectFilters);
+      updateProjectFilters();
+    }
+
     const servicesList = document.getElementById("services-list");
-    if (servicesList) {
+    if (servicesList && portfolio) {
       servicesList.replaceChildren(...portfolio.studio.services.map((service, index) => {
         const row = element("div", "service-item");
         row.append(element("span", "service-index", String(index + 1).padStart(2, "0")));
@@ -104,10 +156,13 @@ document.addEventListener("DOMContentLoaded", () => {
         row.append(element("span", "", "↗"));
         return row;
       }));
+    } else if (servicesList) {
+      const reason = portfolioResult.status === "rejected" ? portfolioResult.reason.message : "The portfolio response was invalid.";
+      servicesList.replaceChildren(element("p", "loading-note", `Could not load studio details: ${reason}`));
     }
 
     const craftGrid = document.getElementById("craft-grid");
-    if (craftGrid) {
+    if (craftGrid && portfolio) {
       craftGrid.replaceChildren(...portfolio.skills.map((skill, index) => {
         const card = element("article", "craft-card");
         card.append(element("span", "", `0${index + 1} /`));
@@ -115,16 +170,37 @@ document.addEventListener("DOMContentLoaded", () => {
         card.append(element("p", "", skill.description));
         return card;
       }));
+    } else if (craftGrid) {
+      const reason = portfolioResult.status === "rejected" ? portfolioResult.reason.message : "The portfolio response was invalid.";
+      craftGrid.replaceChildren(element("p", "loading-note", `Could not load profile details: ${reason}`));
     }
 
-    const announcement = portfolio.announcements[0];
+    const announcement = portfolio?.announcements[0];
     const announcementCopy = document.getElementById("announcement-copy");
     if (announcementCopy && announcement) announcementCopy.textContent = announcement.message;
+
+    let github;
+    try {
+      const githubResponse = await fetch("api/v1/github.json");
+      if (!githubResponse.ok) throw new Error(`HTTP ${githubResponse.status}`);
+      github = await githubResponse.json();
+    } catch (error) {
+      const repoList = document.getElementById("repo-list");
+      if (repoList) {
+        repoList.replaceChildren(element("p", "loading-note", `Recent GitHub details are unavailable: ${error.message}`));
+      }
+      return;
+    }
 
     const repoCount = document.getElementById("github-repo-count");
     const starCount = document.getElementById("github-star-count");
     if (repoCount) repoCount.textContent = Number(github.profile.publicRepos).toLocaleString();
     if (starCount) starCount.textContent = Number(github.totalStars).toLocaleString();
+    const snapshotDate = document.getElementById("github-snapshot-date");
+    const generatedAt = new Date(github.generatedAt);
+    if (snapshotDate && !Number.isNaN(generatedAt.getTime())) {
+      snapshotDate.textContent = `Snapshot refreshed ${generatedAt.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}.`;
+    }
 
     const githubBio = document.getElementById("github-bio");
     if (githubBio && github.profile.bio) githubBio.textContent = github.profile.bio;
@@ -168,20 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    const search = document.getElementById("project-search");
-    if (search && projectGrid) {
-      search.addEventListener("input", () => {
-        const query = search.value.trim().toLowerCase();
-        let visibleCount = 0;
-        projectGrid.querySelectorAll(".project-card").forEach((card) => {
-          const matches = card.dataset.search.includes(query);
-          card.hidden = !matches;
-          if (matches) visibleCount += 1;
-        });
-        const emptyState = document.getElementById("empty-projects");
-        if (emptyState) emptyState.hidden = visibleCount > 0;
-      });
-    }
   };
 
   renderPortfolio().catch((error) => {
@@ -191,9 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
       projectGrid.replaceChildren(message);
     }
     const repoList = document.getElementById("repo-list");
-    if (repoList) {
-      repoList.replaceChildren(element("p", "loading-note", `Could not load live GitHub details: ${error.message}`));
-    }
   });
 
   const feedback = (id, message, isError = false) => {
@@ -203,6 +262,65 @@ document.addEventListener("DOMContentLoaded", () => {
     target.classList.toggle("is-error", isError);
   };
   const inputValue = (id) => document.getElementById(id)?.value ?? "";
+  const copyText = async (value, feedbackId, successMessage) => {
+    try {
+      if (!navigator.clipboard) throw new Error("Clipboard access is unavailable in this browser.");
+      await navigator.clipboard.writeText(value);
+      feedback(feedbackId, successMessage);
+    } catch (error) {
+      feedback(feedbackId, `Could not copy: ${error.message}`, true);
+    }
+  };
+
+  document.getElementById("generate-uuid")?.addEventListener("click", () => {
+    try {
+      const bytes = crypto.getRandomValues(new Uint8Array(16));
+      bytes[6] = (bytes[6] & 0x0f) | 0x40;
+      bytes[8] = (bytes[8] & 0x3f) | 0x80;
+      const hex = [...bytes].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+      const uuid = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+      document.getElementById("uuid-output").value = uuid;
+      document.getElementById("copy-uuid").disabled = false;
+      feedback("uuid-feedback", "Generated locally with cryptographic randomness.");
+    } catch {
+      feedback("uuid-feedback", "Secure random number generation is unavailable.", true);
+    }
+  });
+  document.getElementById("copy-uuid")?.addEventListener("click", () => {
+    copyText(inputValue("uuid-output"), "uuid-feedback", "UUID copied.");
+  });
+
+  document.getElementById("convert-timestamp")?.addEventListener("click", () => {
+    const raw = inputValue("timestamp-input").trim();
+    const numeric = Number(raw);
+    const epoch = raw && Number.isFinite(numeric)
+      ? numeric * (Math.abs(numeric) < 100_000_000_000 ? 1000 : 1)
+      : Date.parse(raw);
+    const date = new Date(epoch);
+    const output = document.getElementById("timestamp-output");
+    if (!raw || Number.isNaN(date.getTime()) || !output) {
+      feedback("timestamp-feedback", "Enter a Unix timestamp or a valid date.", true);
+      if (output) output.hidden = true;
+      return;
+    }
+    output.textContent = [
+      `ISO (UTC): ${date.toISOString()}`,
+      `Unix seconds: ${Math.floor(date.getTime() / 1000)}`,
+      `Unix milliseconds: ${date.getTime()}`
+    ].join("\n");
+    output.hidden = false;
+    feedback("timestamp-feedback", "Converted successfully.");
+  });
+
+  document.getElementById("hash-text")?.addEventListener("click", async () => {
+    try {
+      const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(inputValue("hash-input")));
+      const hash = [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+      feedback("hash-feedback", hash);
+    } catch {
+      feedback("hash-feedback", "SHA-256 requires a secure browser context (HTTPS).", true);
+    }
+  });
 
   document.getElementById("format-json")?.addEventListener("click", () => {
     try {
@@ -258,6 +376,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (input) input.value = "";
       const feedbackId = `${button.dataset.clear.replace("-input", "")}-feedback`;
       feedback(feedbackId, "");
+      if (button.dataset.clear === "timestamp-input") {
+        const output = document.getElementById("timestamp-output");
+        if (output) output.hidden = true;
+      }
     });
   });
 
@@ -270,8 +392,33 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(endpoint);
       if (!response.ok) throw new Error(`Request failed (${response.status}).`);
       output.textContent = JSON.stringify(await response.json(), null, 2);
+      document.getElementById("copy-api-response").disabled = false;
+      feedback("api-feedback", "Response loaded.");
     } catch (error) {
       output.textContent = `Unable to fetch this endpoint: ${error.message}`;
+      document.getElementById("copy-api-response").disabled = true;
+      feedback("api-feedback", "Request failed.", true);
     }
+  });
+
+  document.getElementById("copy-api-url")?.addEventListener("click", () => {
+    const endpoint = document.getElementById("api-endpoint")?.value;
+    if (!endpoint) return;
+    copyText(new URL(endpoint, window.location.href).href, "api-feedback", "Endpoint URL copied.");
+  });
+
+  document.getElementById("copy-api-response")?.addEventListener("click", () => {
+    copyText(document.getElementById("api-output")?.textContent ?? "", "api-feedback", "JSON response copied.");
+  });
+
+  document.getElementById("copy-inquiry")?.addEventListener("click", () => {
+    const service = document.getElementById("inquiry-service")?.value.trim();
+    const notes = inputValue("inquiry-notes").trim();
+    if (!service || !notes) {
+      feedback("inquiry-feedback", "Choose a service and add a short project description.", true);
+      return;
+    }
+    const draft = `Project inquiry: ${service}\n\n${notes}\n\nContact: https://github.com/hunter-zen-RU`;
+    copyText(draft, "inquiry-feedback", "Brief copied. Paste it into a GitHub message to get in touch.");
   });
 });
