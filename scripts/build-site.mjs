@@ -6,6 +6,27 @@ import { fetchGithubData } from "./github-data.mjs";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const output = resolve(root, "dist");
 const data = JSON.parse(await readFile(join(root, "data/portfolio.json"), "utf8"));
+const generatedRootPaths = [
+  join(root, "api/v1"),
+  join(root, "assets/projects"),
+  join(root, "projects")
+];
+
+async function loadGithubSnapshot() {
+  try {
+    return await fetchGithubData();
+  } catch (refreshError) {
+    let cachedSnapshot;
+    try {
+      cachedSnapshot = JSON.parse(await readFile(join(root, "data/github-cache.json"), "utf8"));
+    } catch (cacheError) {
+      if (cacheError.code === "ENOENT") throw refreshError;
+      throw cacheError;
+    }
+    console.warn(`GitHub refresh failed: ${refreshError.message} Using cached snapshot from ${cachedSnapshot.generatedAt}.`);
+    return cachedSnapshot;
+  }
+}
 
 const xmlEscape = (value) => String(value)
   .replaceAll("&", "&amp;")
@@ -51,25 +72,10 @@ function renderProjectPage(project) {
 `;
 }
 
-export async function buildSite({ githubData } = {}) {
-  const github = githubData ?? await fetchGithubData();
-  if (output === root || relative(root, output).startsWith("..")) {
-    throw new Error("Build output must stay inside the repository.");
-  }
-
-  await rm(output, { recursive: true, force: true });
-  await mkdir(output, { recursive: true });
-
-  for (const file of ["index.html", "style.css", "script.js", "README.md"]) {
-    await cp(join(root, file), join(output, file));
-  }
-  for (const directory of ["assets", "scripts", "win", "Konsole", "Konsole-plugins", "Konsole-package"]) {
-    await cp(join(root, directory), join(output, directory), { recursive: true });
-  }
-
+async function writeGeneratedSite(destination, github) {
   for (const project of [...data.tools, ...data.upcoming]) {
-    const imagePath = resolve(output, project.image);
-    if (!imagePath.startsWith(`${resolve(output, "assets/projects")}/`) || !project.image.endsWith(".svg")) {
+    const imagePath = resolve(destination, project.image);
+    if (!imagePath.startsWith(`${resolve(destination, "assets/projects")}/`) || !project.image.endsWith(".svg")) {
       throw new Error(`Invalid project artwork path: ${project.image}`);
     }
     await mkdir(dirname(imagePath), { recursive: true });
@@ -86,15 +92,15 @@ export async function buildSite({ githubData } = {}) {
 </svg>`;
     await writeFile(imagePath, artwork);
 
-    const detailPath = resolve(output, project.page);
-    if (!detailPath.startsWith(`${resolve(output, "projects")}/`) || !project.page.endsWith("/")) {
+    const detailPath = resolve(destination, project.page);
+    if (!detailPath.startsWith(`${resolve(destination, "projects")}/`) || !project.page.endsWith("/")) {
       throw new Error(`Invalid project detail path: ${project.page}`);
     }
     await mkdir(detailPath, { recursive: true });
     await writeFile(join(detailPath, "index.html"), renderProjectPage(project));
   }
 
-  const api = join(output, "api/v1");
+  const api = join(destination, "api/v1");
   await mkdir(api, { recursive: true });
   await writeFile(join(api, "portfolio.json"), `${JSON.stringify(data, null, 2)}\n`);
   await writeFile(join(api, "tools.json"), `${JSON.stringify({
@@ -107,9 +113,41 @@ export async function buildSite({ githubData } = {}) {
     announcements: data.announcements
   }, null, 2)}\n`);
   await writeFile(join(api, "github.json"), `${JSON.stringify(github, null, 2)}\n`);
-  await writeFile(join(output, ".nojekyll"), "");
+  await writeFile(join(destination, ".nojekyll"), "");
+}
 
-  console.log(`Built static portfolio, GitHub snapshot, and ${data.tools.length + data.upcoming.length} project pages in dist/.`);
+async function copySiteTo(destination, includeGenerated) {
+  await mkdir(destination, { recursive: true });
+  const files = ["index.html", "style.css", "script.js", "README.md"];
+  const directories = ["assets", "scripts", "win", "Konsole", "Konsole-plugins", "Konsole-package"];
+  if (includeGenerated) {
+    files.push(".nojekyll");
+    directories.push("api", "projects");
+  }
+  for (const file of files) {
+    await cp(join(root, file), join(destination, file));
+  }
+  for (const directory of directories) {
+    await cp(join(root, directory), join(destination, directory), { recursive: true });
+  }
+}
+
+export async function buildSite({ githubData, writeRoot = githubData === undefined } = {}) {
+  const github = githubData ?? await loadGithubSnapshot();
+  if (output === root || relative(root, output).startsWith("..")) {
+    throw new Error("Build output must stay inside the repository.");
+  }
+
+  if (writeRoot) {
+    for (const path of generatedRootPaths) await rm(path, { recursive: true, force: true });
+    await rm(join(root, ".nojekyll"), { force: true });
+    await writeGeneratedSite(root, github);
+  }
+  await rm(output, { recursive: true, force: true });
+  await mkdir(output, { recursive: true });
+  await copySiteTo(output, writeRoot);
+  if (!writeRoot) await writeGeneratedSite(output, github);
+  console.log(`Built static portfolio, GitHub snapshot, and ${data.tools.length + data.upcoming.length} project pages in ${writeRoot ? "the repository and dist/" : "dist/"}.`);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

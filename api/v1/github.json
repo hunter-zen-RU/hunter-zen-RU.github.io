@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-11-23T11:16:03.276Z",
+  "profile": {
+    "login": "hunter-zen-RU",
+    "bio": "Software engineer , website developer , graphics designer , ethical hacker",
+    "blog": "https://tress9trojan.pythonanywhere.com/",
+    "publicRepos": 39,
+    "followers": 2
+  },
+  "totalStars": 10,
+  "repositories": [
+    {
+      "name": "hunter-zen-RU.github.io",
+      "description": "this is the home to hunter zen ru",
+      "url": "https://github.com/hunter-zen-RU/hunter-zen-RU.github.io",
+      "language": "Shell",
+      "stars": 0,
+      "updatedAt": "2026-11-23T11:08:23Z"
+    },
+    {
+      "name": "Konsole-OS",
+      "description": "Konsole-OS , A terminal emulator ,launcher and wide system management  application for Android OS extendible by variety of packages. contains the base of termux and TUI ideology.",
+      "url": "https://github.com/hunter-zen-RU/Konsole-OS",
+      "language": "Java",
+      "stars": 6,
+      "updatedAt": "2026-11-23T06:46:20Z"
+    },
+    {
+      "name": "mpesa-pay",
+      "description": "node js mpesa payment",
+      "url": "https://github.com/hunter-zen-RU/mpesa-pay",
+      "language": "JavaScript",
+      "stars": 0,
+      "updatedAt": "2026-11-19T11:44:13Z"
+    },
+    {
+      "name": "hunter-zen-RU",
+      "description": "About Me",
+      "url": "https://github.com/hunter-zen-RU/hunter-zen-RU",
+      "language": "",
+      "stars": 0,
+      "updatedAt": "2026-11-19T11:19:18Z"
+    },
+    {
+      "name": "Konsole-packages",
+      "description": "konsole app packages",
+      "url": "https://github.com/hunter-zen-RU/Konsole-packages",
+      "language": "",
+      "stars": 0,
+      "updatedAt": "2026-11-12T13:38:11Z"
+    },
+    {
+      "name": "kenten-llm",
+      "description": "a android llm for offline chatting",
+      "url": "https://github.com/hunter-zen-RU/kenten-llm",
+      "language": "Kotlin",
+      "stars": 0,
+      "updatedAt": "2026-11-10T11:06:32Z"
+    }
+  ]
+}

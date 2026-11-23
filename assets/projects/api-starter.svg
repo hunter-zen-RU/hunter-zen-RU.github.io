@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 510" role="img" aria-label="Developer API starter project artwork">
+  <rect width="920" height="510" fill="#1e2b2a"/>
+  <circle cx="750" cy="135" r="205" fill="#8ed1c0" opacity=".11"/>
+  <circle cx="750" cy="135" r="145" fill="none" stroke="#8ed1c0" stroke-opacity=".28"/>
+  <circle cx="750" cy="135" r="94" fill="none" stroke="#8ed1c0" stroke-opacity=".35"/>
+  <path d="M0 416h920" stroke="#fff" stroke-opacity=".13"/>
+  <text x="54" y="79" fill="#8ed1c0" font-family="monospace" font-size="15" letter-spacing="3">CONCEPT · DEVELOPER TOOLS</text>
+  <text x="54" y="319" fill="#8ed1c0" font-family="sans-serif" font-size="132" font-weight="700" letter-spacing="-8">API</text>
+  <text x="56" y="376" fill="#f3f2ed" font-family="sans-serif" font-size="29" font-weight="600">Developer API starter</text>
+  <text x="56" y="464" fill="#c6cbbf" font-family="monospace" font-size="12" letter-spacing="2">HUNTER ZEN RU · HUNRUTECH</text>
+</svg>

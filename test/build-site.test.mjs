@@ -58,7 +58,9 @@ test("build publishes the portfolio page, versioned API, and artwork", async () 
 });
 
 test("GitHub snapshot exposes public profile metrics without private email fields", async () => {
-  const fetchImpl = async (url) => {
+  const authorizationHeaders = [];
+  const fetchImpl = async (url, options) => {
+    authorizationHeaders.push(options.headers.authorization);
     const payload = url.endsWith("/repos?per_page=100&sort=updated&type=owner")
       ? [{
           name: "tooling",
@@ -94,9 +96,10 @@ test("GitHub snapshot exposes public profile metrics without private email field
       json: async () => payload
     };
   };
-  const snapshot = await fetchGithubData(fetchImpl);
+  const snapshot = await fetchGithubData(fetchImpl, "test-token");
   assert.equal(snapshot.profile.publicRepos, 39);
   assert.equal(snapshot.totalStars, 3);
   assert.equal(snapshot.repositories.length, 1);
   assert.equal("email" in snapshot.profile, false);
+  assert.deepEqual(authorizationHeaders, ["Bearer test-token", "Bearer test-token"]);
 });

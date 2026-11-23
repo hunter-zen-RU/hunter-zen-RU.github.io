@@ -1,13 +1,15 @@
 const username = "hunter-zen-RU";
 const api = "https://api.github.com";
 
-async function getJson(fetchImpl, url) {
+async function getJson(fetchImpl, url, token) {
+  const headers = {
+    accept: "application/vnd.github+json",
+    "x-github-api-version": "2022-11-28",
+    "user-agent": "hunter-zen-ru-portfolio"
+  };
+  if (token) headers.authorization = `Bearer ${token}`;
   const response = await fetchImpl(url, {
-    headers: {
-      accept: "application/vnd.github+json",
-      "x-github-api-version": "2022-11-28",
-      "user-agent": "hunter-zen-ru-portfolio"
-    },
+    headers,
     signal: AbortSignal.timeout(15000)
   });
   if (!response.ok) {
@@ -16,10 +18,10 @@ async function getJson(fetchImpl, url) {
   return response.json();
 }
 
-export async function fetchGithubData(fetchImpl = fetch) {
+export async function fetchGithubData(fetchImpl = fetch, token = process.env.GITHUB_TOKEN) {
   const [profile, repos] = await Promise.all([
-    getJson(fetchImpl, `${api}/users/${username}`),
-    getJson(fetchImpl, `${api}/users/${username}/repos?per_page=100&sort=updated&type=owner`)
+    getJson(fetchImpl, `${api}/users/${username}`, token),
+    getJson(fetchImpl, `${api}/users/${username}/repos?per_page=100&sort=updated&type=owner`, token)
   ]);
   if (!Array.isArray(repos)) {
     throw new Error("GitHub API returned an unexpected repository list.");

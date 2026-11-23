@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0",
+  "announcements": [
+    {
+      "label": "Studio note",
+      "message": "HunruTech makes software, scripts, tools, websites, games, and graphic design.",
+      "url": "https://github.com/hunrutech"
+    }
+  ]
+}

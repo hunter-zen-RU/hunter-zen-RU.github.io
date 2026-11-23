@@ -25,6 +25,8 @@ jobs:
         with:
           node-version: 22
       - name: Test and build site
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm test
           npm run build
