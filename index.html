@@ -1,341 +1,264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101414" />
     <meta
       name="description"
-      content="Hunter Zen RU is a developer and digital builder focused on automation, Android utilities, OSINT tools, media workflows, and modern developer tooling."
+      content="Hunter Zen RU builds practical software, developer tools, scripts, websites, and creative digital experiences. Meet HunruTech and explore the work."
     />
-    <title>Hunter Zen RU | Portfolio</title>
+    <meta property="og:title" content="Hunter Zen RU — Software & digital craft" />
+    <meta
+      property="og:description"
+      content="Independent builder at HunruTech. Software, tools, websites, games, and design."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://github.com/hunter-zen-RU.png?size=1200" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Hunter Zen RU — Software & digital craft</title>
+    <link rel="icon" href="assets/profile.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="background-orb orb-one"></div>
-    <div class="background-orb orb-two"></div>
-    <div class="background-orb orb-three"></div>
-
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="container nav-wrap">
-        <a href="#home" class="brand" aria-label="Hunter Zen RU home">
-          <span class="brand-mark">HZ</span>
-          <span class="brand-text">Hunter Zen RU</span>
+        <a class="brand" href="#home" aria-label="Hunter Zen RU, home">
+          <span class="brand-symbol" aria-hidden="true">hz<span>.</span></span>
+          <span class="brand-name">HUNTER ZEN <span>RU</span></span>
         </a>
-
-        <nav class="main-nav" aria-label="Main navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+          <span class="sr-only">Toggle navigation</span>
+          <span></span><span></span>
+        </button>
+        <nav class="main-nav" id="primary-nav" aria-label="Main navigation">
+          <a href="#work">Work</a>
+          <a href="#studio">Studio</a>
           <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#tools">Tools</a>
-          <a href="#downloads">Downloads</a>
-          <a href="#social">Social</a>
+          <a href="#lab">Developer lab</a>
         </nav>
-
-        <a class="button button-sm button-primary" href="#downloads">Download Tools</a>
+        <a class="nav-cta" href="https://github.com/hunrutech" target="_blank" rel="noreferrer">
+          Let’s talk <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </header>
 
-    <main>
-      <section id="home" class="hero section">
-        <div class="container hero-grid">
-          <div class="hero-copy reveal">
-            <span class="eyebrow">Developer • Builder • Researcher</span>
-            <h1>Building automation, digital tools, and smarter systems.</h1>
-            <p>
-              I’m Hunter Zen RU — a developer focused on automation, Android customization,
-              research tooling, media workflows, and efficient CLI utilities built for real-world use.
+    <main id="main">
+      <section class="hero section-shell" id="home">
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="live-dot"></span> Independent maker · HunruTech</p>
+            <h1>Good ideas<br />deserve to <span>ship.</span></h1>
+            <p class="hero-lede">
+              I’m Hunter Zen RU. I turn useful ideas into software, developer tools, and digital
+              experiences—with a focus on practical details and thoughtful design.
             </p>
-
-            <div class="cta-row">
-              <a class="button button-primary" href="#downloads">Download Files</a>
-              <a class="button button-secondary" href="#projects">View Projects</a>
+            <div class="hero-actions">
+              <a class="button button-dark" href="#work">Explore the work <span aria-hidden="true">↓</span></a>
+              <a class="text-link" href="https://github.com/hunter-zen-RU" target="_blank" rel="noreferrer">
+                GitHub profile <span aria-hidden="true">↗</span>
+              </a>
             </div>
-
-            <div class="hero-stats">
-              <div>
-                <strong>6+</strong>
-                <span>Core Focus Areas</span>
-              </div>
-              <div>
-                <strong>20+</strong>
-                <span>Project Concepts</span>
-              </div>
-              <div>
-                <strong>100%</strong>
-                <span>Hands-on Experimentation</span>
-              </div>
+            <div class="hero-meta">
+              <span>SOFTWARE</span><i></i><span>TOOLS</span><i></i><span>CREATIVE TECH</span>
             </div>
           </div>
+          <aside class="profile-card" aria-label="Profile">
+            <div class="profile-topline"><span>THE MAKER</span><span>001 / HZRU</span></div>
+            <div class="profile-image-wrap">
+              <img
+                class="profile-image"
+                src="https://github.com/hunter-zen-RU.png?size=480"
+                data-fallback="assets/profile.svg"
+                alt="Hunter Zen RU profile picture"
+                width="480"
+                height="480"
+              />
+              <span class="image-caption">BUILDING IN PUBLIC</span>
+            </div>
+            <div class="profile-info">
+              <div><h2>Hunter Zen RU</h2><p>Developer · Designer · Builder</p></div>
+              <a class="round-link" href="https://github.com/hunter-zen-RU" target="_blank" rel="noreferrer" aria-label="Visit Hunter Zen RU on GitHub">↗</a>
+            </div>
+            <div class="profile-footer"><span>INDEPENDENT BY DESIGN</span><span>OPEN TO IDEAS</span></div>
+          </aside>
+        </div>
+        <div class="hero-index" aria-hidden="true">H Z / <span id="hero-year"></span></div>
+      </section>
 
-          <div class="hero-panel reveal">
-            <div class="glass-card profile-card">
-              <div class="status-pill">Available for software experiments & developer tools</div>
+      <section class="announcement section-shell" aria-labelledby="announcement-title">
+        <div class="container announcement-inner">
+          <div class="announcement-label"><span class="announcement-icon">!</span><span id="announcement-title">STUDIO NOTE</span></div>
+          <p id="announcement-copy">HunruTech makes software, scripts, tools, websites, games, and graphic design.</p>
+          <a href="#studio" aria-label="Learn about HunruTech">Read the studio brief <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
 
-              <div class="profile-header">
-                <div class="avatar">HZ</div>
-                <div>
-                  <h2>Hunter Zen RU</h2>
-                  <p>Automation • Android • OSINT • Dev Tools</p>
-                </div>
+      <section class="section-shell work-section" id="work">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">01 / Selected work</p>
+              <h2>Small tools.<br /><span>Useful outcomes.</span></h2>
+            </div>
+            <p class="section-intro">A growing collection of experiments and practical projects. Built to solve a problem, explore an idea, or make a workflow feel a little better.</p>
+          </div>
+          <div class="work-toolbar">
+            <p><span id="project-count">—</span> PROJECTS & EXPERIMENTS</p>
+            <label class="search-field">
+              <span class="sr-only">Search projects</span>
+              <span aria-hidden="true">⌕</span>
+              <input id="project-search" type="search" placeholder="Find a project" autocomplete="off" />
+            </label>
+          </div>
+          <div class="project-grid" id="project-grid" aria-live="polite">
+            <p class="loading-note">Loading the project shelf…</p>
+          </div>
+          <p class="empty-state" id="empty-projects" hidden>No projects match that search. Try another word.</p>
+          <section class="github-snapshot" aria-labelledby="github-heading">
+            <div class="github-snapshot-heading">
+              <div><p class="eyebrow">From the public GitHub profile</p><h3 id="github-heading">More things in motion.</h3></div>
+              <div class="github-metrics" aria-label="GitHub profile statistics">
+                <div><strong id="github-repo-count">—</strong><span>PUBLIC REPOS</span></div>
+                <div><strong id="github-star-count">—</strong><span>STARS ON ORIGINAL REPOS</span></div>
               </div>
-
-              <div class="tech-badges">
-                <span>Python</span>
-                <span>JavaScript</span>
-                <span>Node.js</span>
-                <span>Linux</span>
-                <span>Bash</span>
-                <span>Android</span>
+            </div>
+            <div class="repo-list" id="repo-list" aria-live="polite"><p class="loading-note">Loading recent repositories…</p></div>
+            <div class="github-profile-links">
+              <p id="github-bio">Software engineer, website developer, and graphics designer.</p>
+              <div>
+                <a href="https://github.com/hunter-zen-RU" target="_blank" rel="noreferrer">Contact via GitHub ↗</a>
+                <a id="github-blog-link" href="#" target="_blank" rel="noreferrer" hidden>Personal site ↗</a>
               </div>
+            </div>
+          </section>
+        </div>
+      </section>
 
-              <div class="mini-panel">
-                <div>
-                  <span class="mini-label">Primary Focus</span>
-                  <strong>Automation & utility tooling</strong>
-                </div>
-                <div>
-                  <span class="mini-label">Work Style</span>
-                  <strong>Research-driven, practical, and efficient</strong>
-                </div>
+      <section class="studio-section section-shell" id="studio">
+        <div class="container studio-layout">
+          <div class="studio-copy">
+            <p class="eyebrow">02 / The studio</p>
+            <p class="studio-wordmark">hunru<span>tech</span></p>
+            <h2>Ideas into<br />digital things.</h2>
+            <p class="section-intro">HunruTech is a software and creative studio for turning concepts into useful, expressive digital products. From an early sketch to a finished experience, the aim is thoughtful work that people can actually use.</p>
+            <a class="button button-light" href="https://github.com/hunrutech" target="_blank" rel="noreferrer">Explore HunruTech <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="service-list" id="services-list" aria-label="HunruTech services"></div>
+        </div>
+      </section>
+
+      <section class="section-shell about-section" id="about">
+        <div class="container">
+          <div class="section-heading about-heading">
+            <div>
+              <p class="eyebrow">03 / Approach & craft</p>
+              <h2>Curiosity, craft,<br /><span>then a working thing.</span></h2>
+            </div>
+            <p class="section-intro">A hands-on practice shaped by open-source projects, scripting, interface ideas, and learning by making.</p>
+          </div>
+          <div class="craft-grid" id="craft-grid"></div>
+        </div>
+      </section>
+
+      <section class="section-shell upcoming-section" id="upcoming">
+        <div class="container">
+          <div class="section-heading">
+            <div><p class="eyebrow">04 / In the sketchbook</p><h2>What’s <span>next.</span></h2></div>
+            <p class="section-intro">Early directions, not release promises. These concepts are a window into the kinds of things I’m interested in making next.</p>
+          </div>
+          <div class="project-grid upcoming-grid" id="upcoming-grid"></div>
+        </div>
+      </section>
+
+      <section class="lab-section section-shell" id="lab">
+        <div class="container">
+          <div class="section-heading lab-heading">
+            <div><p class="eyebrow">05 / Developer lab</p><h2>Quick tools for<br /><span>everyday work.</span></h2></div>
+            <p class="section-intro">Handy little utilities that run right here in your browser. Your input stays on your device.</p>
+          </div>
+          <div class="lab-grid">
+            <article class="lab-card">
+              <div class="lab-card-heading"><span class="lab-number">01</span><h3>JSON formatter</h3></div>
+              <label class="sr-only" for="json-input">JSON to format</label>
+              <textarea id="json-input" spellcheck="false" placeholder='{"hello":"world","ready":true}'></textarea>
+              <div class="lab-controls">
+                <button class="button button-dark button-small" type="button" id="format-json">Format JSON</button>
+                <button class="subtle-button" type="button" data-clear="json-input">Clear</button>
               </div>
+              <p class="tool-feedback" id="json-feedback" aria-live="polite"></p>
+            </article>
+            <article class="lab-card">
+              <div class="lab-card-heading"><span class="lab-number">02</span><h3>Encode / decode</h3></div>
+              <label class="sr-only" for="codec-input">Text to encode or decode</label>
+              <textarea id="codec-input" spellcheck="false" placeholder="Type or paste text here…"></textarea>
+              <div class="lab-controls">
+                <button class="button button-dark button-small" type="button" data-codec="encode">Base64 encode</button>
+                <button class="button button-outline button-small" type="button" data-codec="decode">Decode</button>
+                <button class="subtle-button" type="button" data-clear="codec-input">Clear</button>
+              </div>
+              <p class="tool-feedback" id="codec-feedback" aria-live="polite"></p>
+            </article>
+            <article class="lab-card url-card">
+              <div class="lab-card-heading"><span class="lab-number">03</span><h3>URL encoder</h3></div>
+              <label class="sr-only" for="url-input">Text to encode or decode as a URL component</label>
+              <textarea id="url-input" spellcheck="false" placeholder="A phrase, query, or URL component…"></textarea>
+              <div class="lab-controls">
+                <button class="button button-dark button-small" type="button" data-url="encode">Encode</button>
+                <button class="button button-outline button-small" type="button" data-url="decode">Decode</button>
+                <button class="subtle-button" type="button" data-clear="url-input">Clear</button>
+              </div>
+              <p class="tool-feedback" id="url-feedback" aria-live="polite"></p>
+            </article>
+          </div>
+          <div class="api-panel">
+            <div><p class="eyebrow">A tiny static API</p><h3>Portfolio data, ready to fetch.</h3><p>Versioned JSON endpoints served directly from GitHub Pages—no server required.</p></div>
+            <div class="api-explorer">
+              <label for="api-endpoint">Endpoint</label>
+              <div class="api-controls">
+                <select id="api-endpoint">
+                  <option value="api/v1/portfolio.json">Portfolio profile</option>
+                  <option value="api/v1/tools.json">Tools & projects</option>
+                  <option value="api/v1/announcements.json">Announcements</option>
+                  <option value="api/v1/github.json">Live GitHub snapshot</option>
+                </select>
+                <button type="button" class="button button-light button-small" id="fetch-api">Fetch JSON</button>
+              </div>
+              <pre class="api-output" id="api-output" tabindex="0" aria-live="polite">Choose an endpoint and fetch its JSON response.</pre>
+              <a class="api-link" href="api/v1/portfolio.json">Open the portfolio API directly ↗</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="about" class="section about">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">About me</span>
-            <h2>Turning ideas into useful software systems.</h2>
+      <section class="closing-section section-shell">
+        <div class="container closing-inner">
+          <p class="eyebrow">Have a good one in mind?</p>
+          <h2>Let’s make<br /><span>something useful.</span></h2>
+          <div class="contact-actions">
+            <a class="button button-light" href="https://github.com/hunter-zen-RU" target="_blank" rel="noreferrer">Contact via GitHub <span aria-hidden="true">↗</span></a>
+            <a class="contact-studio-link" href="https://github.com/hunrutech" target="_blank" rel="noreferrer">Explore HunruTech ↗</a>
           </div>
-
-          <div class="about-grid">
-            <div class="glass-card panel reveal">
-              <p>
-                My work spans bot frameworks, Android-focused customization, automation scripts,
-                media tooling, OSINT workflows, and practical developer utilities. The goal is to
-                build systems that are flexible, efficient, and useful beyond the lab environment.
-              </p>
-              <p>
-                From messaging automation to CLI tooling and launcher experimentation, I focus on
-                exploring practical engineering patterns that bridge research, usability, and custom
-                workflows for users who want to push technology further.
-              </p>
-            </div>
-
-            <div class="focus-stack reveal">
-              <article class="focus-item">
-                <span class="focus-icon">01</span>
-                <div>
-                  <h3>Automation & Bots</h3>
-                  <p>WhatsApp, Telegram, Instagram, Facebook Messenger, and workflow automation systems.</p>
-                </div>
-              </article>
-
-              <article class="focus-item">
-                <span class="focus-icon">02</span>
-                <div>
-                  <h3>Android Tools</h3>
-                  <p>Terminal-centered launchers, app frameworks, and Android customization experiments.</p>
-                </div>
-              </article>
-
-              <article class="focus-item">
-                <span class="focus-icon">03</span>
-                <div>
-                  <h3>Media & Research</h3>
-                  <p>Open-source media access tools, downloader workflows, reverse engineering, and research utilities.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="section projects">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Project focus</span>
-            <h2>Exploring practical systems across multiple domains.</h2>
-          </div>
-
-          <div class="project-grid">
-            <article class="project-card reveal">
-              <div class="project-header">
-                <span class="project-tag">Automation</span>
-                <span class="project-dot"></span>
-              </div>
-              <h3>Bot Frameworks</h3>
-              <p>Messaging and social automation systems built around personalization, command-driven rules, and scalable workflows.</p>
-            </article>
-
-            <article class="project-card reveal">
-              <div class="project-header">
-                <span class="project-tag">Android</span>
-                <span class="project-dot"></span>
-              </div>
-              <h3>Launcher Experiments</h3>
-              <p>Terminal-style interfaces, app launchers, and Android productivity workflows that prioritize speed and adaptability.</p>
-            </article>
-
-            <article class="project-card reveal">
-              <div class="project-header">
-                <span class="project-tag">Media</span>
-                <span class="project-dot"></span>
-              </div>
-              <h3>Streaming & Download Tools</h3>
-              <p>Open-source media and download projects focused on flexible access, community-first usage, and streamlined interfaces.</p>
-            </article>
-
-            <article class="project-card reveal">
-              <div class="project-header">
-                <span class="project-tag">Research</span>
-                <span class="project-dot"></span>
-              </div>
-              <h3>OSINT & Reverse Engineering</h3>
-              <p>Research-oriented tooling built for information gathering, digital analysis, and decompilation workflows.</p>
-            </article>
-
-            <article class="project-card reveal">
-              <div class="project-header">
-                <span class="project-tag">Developer</span>
-                <span class="project-dot"></span>
-              </div>
-              <h3>CLI & Utility Projects</h3>
-              <p>Project setup tools, runtime wrappers, package management ideas, and shell automation for developers.</p>
-            </article>
-
-            <article class="project-card reveal">
-              <div class="project-header">
-                <span class="project-tag">Systems</span>
-                <span class="project-dot"></span>
-              </div>
-              <h3>Workflow Engineering</h3>
-              <p>Cross-platform utility layers, installation flows, and automation patterns designed to reduce repetitive work.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="tools" class="section tools">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Toolset</span>
-            <h2>Tools and technologies I work with.</h2>
-          </div>
-
-          <div class="tools-grid">
-            <div class="tool-item reveal"><span>JavaScript</span></div>
-            <div class="tool-item reveal"><span>Node.js</span></div>
-            <div class="tool-item reveal"><span>Python</span></div>
-            <div class="tool-item reveal"><span>Bash</span></div>
-            <div class="tool-item reveal"><span>Shell</span></div>
-            <div class="tool-item reveal"><span>GitHub</span></div>
-            <div class="tool-item reveal"><span>Linux</span></div>
-            <div class="tool-item reveal"><span>Android</span></div>
-            <div class="tool-item reveal"><span>APIs</span></div>
-            <div class="tool-item reveal"><span>Automation</span></div>
-            <div class="tool-item reveal"><span>CLI Tools</span></div>
-            <div class="tool-item reveal"><span>OSINT</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="downloads" class="section downloads">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Downloads</span>
-            <h2>Useful files and project resources.</h2>
-          </div>
-
-          <div class="download-grid">
-            <article class="download-card reveal">
-              <div class="file-badge bash">.sh</div>
-              <h3>packser.sh</h3>
-              <p>Utility script for packaging, automation, and project workflow tasks.</p>
-              <a class="button button-primary" href="https://raw.githubusercontent.com/hunter-zen-RU/hunter-zen-RU.github.io/main/scripts/packser.sh" download>Download</a>
-            </article>
-
-            <article class="download-card reveal">
-              <div class="file-badge python">.sh</div>
-              <h3>pynx.sh</h3>
-              <p>Project runner and installer utility inspired by modern package workflow patterns.</p>
-              <a class="button button-primary" href="https://raw.githubusercontent.com/hunter-zen-RU/hunter-zen-RU.github.io/main/scripts/pynx.sh" download>Download</a>
-            </article>
-
-            <article class="download-card reveal">
-              <div class="file-badge windows">win</div>
-              <h3>windows/test</h3>
-              <p>Environment-specific test file included in the Windows utility folder.</p>
-              <a class="button button-primary" href="https://raw.githubusercontent.com/hunter-zen-RU/hunter-zen-RU.github.io/main/windows/test" download>Download</a>
-            </article>
-
-            <article class="download-card reveal">
-              <div class="file-badge readme">md</div>
-              <h3>README.md</h3>
-              <p>Portfolio overview and repository summary with project context and direction.</p>
-              <a class="button button-primary" href="https://raw.githubusercontent.com/hunter-zen-RU/hunter-zen-RU.github.io/main/README.md" download>Download</a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="social" class="section social">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Connect</span>
-            <h2>Follow my work and get in touch.</h2>
-          </div>
-
-          <div class="social-grid">
-            <a class="social-card reveal" href="https://github.com/hunter-zen-RU" target="_blank" rel="noreferrer">
-              <span class="social-icon">GH</span>
-              <div>
-                <strong>GitHub</strong>
-                <small>@hunter-zen-RU</small>
-              </div>
-            </a>
-
-            <a class="social-card reveal" href="mailto:hello@hunterzen.dev">
-              <span class="social-icon">EM</span>
-              <div>
-                <strong>Email</strong>
-                <small>hello@hunterzen.dev</small>
-              </div>
-            </a>
-
-            <a class="social-card reveal" href="https://t.me/hunterzenru" target="_blank" rel="noreferrer">
-              <span class="social-icon">TG</span>
-              <div>
-                <strong>Telegram</strong>
-                <small>@hunterzenru</small>
-              </div>
-            </a>
-
-            <a class="social-card reveal" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-              <span class="social-icon">IN</span>
-              <div>
-                <strong>LinkedIn</strong>
-                <small>Professional profile</small>
-              </div>
-            </a>
-          </div>
+          <p class="closing-note">Open source · independent work · new ideas welcome</p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-wrap">
-        <p>© <span id="year"></span> Hunter Zen RU</p>
-        <a href="#home">Back to top</a>
+      <div class="container footer-main">
+        <a class="brand footer-brand" href="#home"><span class="brand-symbol" aria-hidden="true">hz<span>.</span></span><span class="brand-name">HUNTER ZEN <span>RU</span></span></a>
+        <p>Made with curiosity at <a href="https://github.com/hunrutech" target="_blank" rel="noreferrer">HunruTech</a>.</p>
+        <a href="#home">Back to top ↑</a>
       </div>
+      <div class="container footer-bottom"><span>© <span id="year"></span> Hunter Zen RU</span><span>Built for people, not just pixels.</span></div>
     </footer>
   </body>
 </html>

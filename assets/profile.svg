@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 456" role="img" aria-label="Hunter Zen RU profile placeholder">
+  <rect width="480" height="456" fill="#222923"/>
+  <circle cx="240" cy="170" r="115" fill="#c9ef74"/>
+  <path d="M56 456c15-111 82-168 184-168s169 57 184 168" fill="#c9ef74"/>
+  <text x="240" y="188" text-anchor="middle" fill="#171a18" font-family="sans-serif" font-size="82" font-weight="700" letter-spacing="-8">HZ</text>
+</svg>
