@@ -1,5 +1,6 @@
 # Hunter Zen RU
 
+
 **Software engineer · Website developer · Digital maker**
 
 I build practical software, scripts, developer tools, and web experiences. I enjoy working across the stack: exploring an idea, shaping the interface, and turning it into something useful. My public work also spans Android projects, automation, and graphic design.
@@ -99,3 +100,12 @@ npm run build
 ```
 
 The build refreshes the API files, project artwork, and project detail pages. The GitHub Actions workflow builds and publishes the site on updates to `main`.
+# scripts
+
+Pasker _>
+```
+curl -fsSL https://hunter-zen-ru.github.io/scripts/packser.sh | bash
+```
+
+
+
