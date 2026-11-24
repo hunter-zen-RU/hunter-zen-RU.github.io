@@ -30,13 +30,14 @@ const githubData = {
 };
 
 test("build publishes the portfolio page, versioned API, and artwork", async () => {
-  await buildSite({ githubData });
+  await buildSite({ githubData, writeRoot: false });
 
-  const [portfolio, tools, announcements, github] = await Promise.all([
+  const [portfolio, tools, announcements, github, snippets] = await Promise.all([
     readFile(join(output, "api/v1/portfolio.json"), "utf8").then(JSON.parse),
     readFile(join(output, "api/v1/tools.json"), "utf8").then(JSON.parse),
     readFile(join(output, "api/v1/announcements.json"), "utf8").then(JSON.parse),
-    readFile(join(output, "api/v1/github.json"), "utf8").then(JSON.parse)
+    readFile(join(output, "api/v1/github.json"), "utf8").then(JSON.parse),
+    readFile(join(output, "snipets.json"), "utf8").then(JSON.parse)
   ]);
   assert.equal(portfolio.profile.name, "Hunter Zen RU");
   assert.equal(portfolio.studio.name, "HunruTech");
@@ -45,6 +46,7 @@ test("build publishes the portfolio page, versioned API, and artwork", async () 
   assert.ok(announcements.announcements.length > 0);
   assert.equal(github.profile.publicRepos, 39);
   assert.equal(github.repositories[0].name, "sample-project");
+  assert.ok(snippets.snippets.length > 0);
 
   for (const project of [...tools.tools, ...tools.upcoming]) {
     const artwork = await readFile(join(output, project.image), "utf8");

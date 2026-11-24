@@ -42,6 +42,8 @@ These are a selection of public projects at different stages. Visit the [reposit
 
 The portfolio includes browser-based utilities for JSON formatting, UTF-8 Base64, URL encoding, UUID v4 generation, Unix timestamp conversion, and SHA-256 hashing. They run locally in your browser; the project-brief helper only copies your draft and does not send or store it.
 
+The developer lab also includes a searchable, filterable snippet library. Its entries are stored in [`snipets.json`](snipets.json), which is copied into the built site as a static JSON file.
+
 ### Public portfolio API
 
 The portfolio publishes read-only JSON endpoints through GitHub Pages:

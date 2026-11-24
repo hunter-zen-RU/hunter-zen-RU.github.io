@@ -120,7 +120,7 @@ async function writeGeneratedSite(destination, github) {
 
 async function copySiteTo(destination, includeGenerated) {
   await mkdir(destination, { recursive: true });
-  const files = ["index.html", "style.css", "script.js", "README.md"];
+  const files = ["index.html", "style.css", "script.js", "snipets.json", "README.md"];
   const directories = ["assets", "scripts", "win", "Konsole", "Konsole-plugins", "Konsole-package"];
   if (includeGenerated) {
     files.push(".nojekyll");

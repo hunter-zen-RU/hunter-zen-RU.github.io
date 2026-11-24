@@ -44,6 +44,7 @@
           <a href="#studio">Studio</a>
           <a href="#about">About</a>
           <a href="#lab">Developer lab</a>
+          <a href="#snippets">Snippets</a>
           <a href="#contact">Contact</a>
         </nav>
         <a class="nav-cta" href="https://github.com/hunrutech" target="_blank" rel="noreferrer">
@@ -253,6 +254,27 @@
               <p class="tool-feedback" id="hash-feedback" aria-live="polite"></p>
             </article>
           </div>
+          <section class="snippet-library" id="snippets" aria-labelledby="snippets-heading">
+            <div class="section-heading snippet-heading">
+              <div><p class="eyebrow">06 / Snippet library</p><h2 id="snippets-heading">Small pieces.<br /><span>Ready to reuse.</span></h2></div>
+              <p class="section-intro">Search and filter practical code examples. Copy any snippet to use it in your own projects.</p>
+            </div>
+            <div class="snippet-toolbar">
+              <p><span id="snippet-count">—</span> SNIPPETS</p>
+              <label class="snippet-search">
+                <span class="sr-only">Search snippets</span>
+                <span aria-hidden="true">⌕</span>
+                <input id="snippet-search" type="search" placeholder="Find a snippet" autocomplete="off" />
+              </label>
+            </div>
+            <div class="project-filters snippet-filters" id="snippet-filters" role="group" aria-label="Filter snippets by category"></div>
+            <div class="snippet-grid" id="snippet-grid" aria-live="polite">
+              <p class="loading-note">Loading the snippet library…</p>
+            </div>
+            <p class="empty-state snippet-empty" id="empty-snippets" hidden>No snippets match that search. Try another word.</p>
+            <p class="tool-feedback" id="snippet-feedback" aria-live="polite"></p>
+            <a class="api-link snippet-data-link" href="snipets.json">Browse the snippets JSON ↗</a>
+          </section>
           <div class="api-panel">
             <div><p class="eyebrow">A tiny static API</p><h3>Portfolio data, ready to fetch.</h3><p>Versioned JSON endpoints served directly from GitHub Pages—no server required.</p></div>
             <div class="api-explorer">
@@ -263,6 +285,7 @@
                   <option value="api/v1/tools.json">Tools & projects</option>
                   <option value="api/v1/announcements.json">Announcements</option>
                   <option value="api/v1/github.json">Live GitHub snapshot</option>
+                  <option value="snipets.json">Snippets</option>
                 </select>
                 <button type="button" class="button button-light button-small" id="fetch-api">Fetch JSON</button>
                 <button type="button" class="button button-outline button-small" id="copy-api-url">Copy URL</button>

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0",
+  "snippets": [
+    {
+      "id": "fetch-json",
+      "title": "Fetch JSON with error handling",
+      "category": "JavaScript",
+      "language": "JavaScript",
+      "description": "Load a JSON endpoint and surface HTTP errors instead of treating failed responses as data.",
+      "tags": ["fetch", "async", "api"],
+      "code": "async function loadJson(url) {\n  const response = await fetch(url);\n  if (!response.ok) {\n    throw new Error(`Request failed (${response.status})`);\n  }\n  return response.json();\n}\n"
+    },
+    {
+      "id": "debounce",
+      "title": "Debounce an input handler",
+      "category": "JavaScript",
+      "language": "JavaScript",
+      "description": "Wait until typing pauses before running an expensive search or filtering operation.",
+      "tags": ["events", "search", "performance"],
+      "code": "function debounce(callback, delay = 250) {\n  let timeout;\n  return (...args) => {\n    clearTimeout(timeout);\n    timeout = setTimeout(() => callback(...args), delay);\n  };\n}\n\nsearchInput.addEventListener(\"input\", debounce((event) => {\n  searchItems(event.target.value);\n}));\n"
+    },
+    {
+      "id": "safe-json-file",
+      "title": "Read a JSON file in Node.js",
+      "category": "Node.js",
+      "language": "JavaScript",
+      "description": "Read and parse a local JSON file using the built-in Node.js file system API.",
+      "tags": ["node", "filesystem", "json"],
+      "code": "import { readFile } from \"node:fs/promises\";\n\nconst contents = await readFile(\"./data.json\", \"utf8\");\nconst data = JSON.parse(contents);\nconsole.log(data);\n"
+    },
+    {
+      "id": "responsive-grid",
+      "title": "Responsive auto-fit grid",
+      "category": "CSS",
+      "language": "CSS",
+      "description": "Create a responsive card grid that adapts to available space without breakpoint-specific columns.",
+      "tags": ["layout", "responsive", "grid"],
+      "code": ".card-grid {\n  display: grid;\n  grid-template-columns: repeat(\n    auto-fit,\n    minmax(min(100%, 16rem), 1fr)\n  );\n  gap: 1rem;\n}\n"
+    },
+    {
+      "id": "shell-safe-loop",
+      "title": "Process filenames safely",
+      "category": "Shell",
+      "language": "Bash",
+      "description": "Loop over matching files without breaking on spaces or unusual filename characters.",
+      "tags": ["bash", "files", "loop"],
+      "code": "find ./src -type f -name '*.js' -print0 |\n  while IFS= read -r -d '' file; do\n    printf 'Found: %s\\n' \"$file\"\n  done\n"
+    },
+    {
+      "id": "http-server",
+      "title": "Start a local static server",
+      "category": "Command line",
+      "language": "Shell",
+      "description": "Preview the current directory in a browser with Python's built-in HTTP server.",
+      "tags": ["python", "http", "preview"],
+      "code": "python3 -m http.server 8000\n"
+    }
+  ]
+}

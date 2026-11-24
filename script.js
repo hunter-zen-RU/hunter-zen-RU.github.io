@@ -78,6 +78,96 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   };
 
+  const renderSnippets = async () => {
+    const grid = document.getElementById("snippet-grid");
+    const filtersContainer = document.getElementById("snippet-filters");
+    const search = document.getElementById("snippet-search");
+    if (!grid || !filtersContainer) return;
+
+    try {
+      const response = await fetch("snipets.json");
+      if (!response.ok) throw new Error(`snipets.json returned HTTP ${response.status}.`);
+      const payload = await response.json();
+      if (!Array.isArray(payload.snippets)) throw new Error("The snippets response does not contain a snippets list.");
+
+      const cards = payload.snippets.map((snippet) => {
+        const card = element("article", "snippet-card");
+        const header = element("div", "snippet-card-header");
+        header.append(element("span", "snippet-category", snippet.category));
+        header.append(element("span", "snippet-language", snippet.language));
+        const title = element("h3", "", snippet.title);
+        const description = element("p", "snippet-description", snippet.description);
+        const code = element("code", "", snippet.code);
+        const codeBlock = element("pre", "snippet-code");
+        codeBlock.append(code);
+        const footer = element("div", "snippet-card-footer");
+        const tags = element("div", "snippet-tags");
+        (snippet.tags || []).forEach((tag) => tags.append(element("span", "", tag)));
+        const copyButton = element("button", "button button-outline button-small", "Copy snippet");
+        copyButton.type = "button";
+        copyButton.addEventListener("click", () => {
+          copyText(snippet.code, "snippet-feedback", `${snippet.title} copied.`);
+        });
+        footer.append(tags, copyButton);
+        card.append(header, title, description, codeBlock, footer);
+        card.dataset.category = snippet.category;
+        card.dataset.search = [
+          snippet.title,
+          snippet.category,
+          snippet.language,
+          snippet.description,
+          ...(snippet.tags || []),
+          snippet.code
+        ].join(" ").toLowerCase();
+        return card;
+      });
+      grid.replaceChildren(...cards);
+
+      let selectedCategory = "all";
+      const categories = [...new Set(payload.snippets.map((snippet) => snippet.category))].sort();
+      const buttons = ["all", ...categories].map((category) => {
+        const button = element("button", "filter-chip", category === "all" ? "All snippets" : category);
+        button.type = "button";
+        button.dataset.category = category;
+        button.setAttribute("aria-pressed", String(category === "all"));
+        button.classList.toggle("is-active", category === "all");
+        button.addEventListener("click", () => {
+          selectedCategory = category;
+          buttons.forEach((filter) => {
+            const active = filter.dataset.category === selectedCategory;
+            filter.classList.toggle("is-active", active);
+            filter.setAttribute("aria-pressed", String(active));
+          });
+          updateSnippets();
+        });
+        return button;
+      });
+      filtersContainer.replaceChildren(...buttons);
+
+      const updateSnippets = () => {
+        const query = search?.value.trim().toLowerCase() || "";
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          const visible = (selectedCategory === "all" || card.dataset.category === selectedCategory)
+            && card.dataset.search.includes(query);
+          card.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        const count = document.getElementById("snippet-count");
+        if (count) count.textContent = String(visibleCount).padStart(2, "0");
+        const emptyState = document.getElementById("empty-snippets");
+        if (emptyState) emptyState.hidden = visibleCount > 0;
+      };
+
+      search?.addEventListener("input", updateSnippets);
+      updateSnippets();
+    } catch (error) {
+      grid.replaceChildren(element("p", "loading-note", `Could not load snippets: ${error.message}`));
+      const count = document.getElementById("snippet-count");
+      if (count) count.textContent = "00";
+    }
+  };
+
   const renderPortfolio = async () => {
     const loadEndpoint = async (path) => {
       const response = await fetch(path);
@@ -271,6 +361,8 @@ document.addEventListener("DOMContentLoaded", () => {
       feedback(feedbackId, `Could not copy: ${error.message}`, true);
     }
   };
+
+  renderSnippets();
 
   document.getElementById("generate-uuid")?.addEventListener("click", () => {
     try {
