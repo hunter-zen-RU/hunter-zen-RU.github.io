@@ -8,6 +8,7 @@ I build practical software, scripts, developer tools, and web experiences. I enj
 **[GitHub profile](https://github.com/hunter-zen-RU)** ·
 **[HunruTech](https://github.com/hunrutech)** ·
 **[Personal site](https://tress9trojan.pythonanywhere.com/)**
+**[next repo](https://github.com/hunterzen-RU/hunterzen-RU.github.io)**
 
 ## What I do
 
