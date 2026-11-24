@@ -54,6 +54,33 @@
       "description": "Preview the current directory in a browser with Python's built-in HTTP server.",
       "tags": ["python", "http", "preview"],
       "code": "python3 -m http.server 8000\n"
+    },
+    {
+      "id": "pasker",
+      "title": "linux package installer",
+      "category": "Command line",
+      "language": "Shell",
+      "description": "..",
+      "tags": ["sh", "hunrutech", "preview"],
+      "code": "curl -fsSL https://hunter-zen-ru.github.io/scripts/packser.sh | bash\n"
+    },
+     {
+      "id": "repodir",
+      "title": "github file explorer",
+      "category": "Command line",
+      "language": "Shell",
+      "description": "..",
+      "tags": ["sh", "hunrutech", "preview"],
+      "code": "curl -fsSL https://hunter-zen-ru.github.io/scripts/repodir.sh | bash\n"
+    },
+     {
+      "id": "pynx",
+      "title": "python pip libralies installer",
+      "category": "Command line",
+      "language": "Shell",
+      "description": "..",
+      "tags": ["sh", "hunrutech", "python"],
+      "code": "curl -fsSL https://hunter-zen-ru.github.io/scripts/pynx.sh | bash\n"
     }
   ]
 }
